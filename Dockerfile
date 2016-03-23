@@ -4,7 +4,7 @@ MAINTAINER itzg
 
 RUN apk add --update curl && rm -rf /var/cache/apk/*
 
-ENV CARINA_CLI_ASOF 20160227
+ENV CARINA_CLI_ASOF 20160322
 
 RUN curl -qsL https://download.getcarina.com/carina/latest/$(uname -s)/$(uname -m)/carina -o /usr/local/bin/carina && \
     chmod +x /usr/local/bin/carina
