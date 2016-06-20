@@ -28,7 +28,7 @@ docker run --rm -v $(pwd)/secrets:/secrets itzg/carina-cli ls
 
 ## Obtaining Credentials Output
 
-As a convenience, this image exposes a `/carina` volume and sets `$CARINA_HOME` to that path. 
+As a convenience, this image exposes a `/carina` volume and sets `$CARINA_HOME` to that path.
 You can either attach that volume to a host directory or use `--volumes-from` in a downstream container, such as
 
 ```
@@ -48,3 +48,17 @@ path
 ## General Usage of the CLI
 
 For general use of the CLI, please refer to the [Carina client documentation](https://github.com/getcarina/carina/blob/master/README.md)
+
+## Saving carina-cli output in a host directory
+
+The following technique is more tedious than running the `carina-cli` directly, but
+does let you run via an image rather than downloading the binary. **NOTE**: the
+example shown here assumes the `CARINA_*` environment variables have been previously
+set.
+
+```
+docker run -v $HOME/.carina:/carina -u $(id -u) \
+  -e CARINA_USERNAME -e CARINA_APIKEY \
+  itzg/carina-cli \
+  credentials YOUR_CLUSTER
+```
